@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 
 public class back {
     private File carpeta;
@@ -26,11 +28,13 @@ public class back {
 
 public int contarPalabra(String palabra) throws FileNotFoundException {
     int Total = 0;
+    int archivosCorrectos = 0;
     int contador = 0;
     for (File archivo : this.archivos) {
         if (archivo.isFile()) {
             String nombre = archivo.getName();
             if (nombre.endsWith(".txt") || nombre.endsWith(".xml") || nombre.endsWith(".json") || nombre.endsWith(".csv")) {
+                archivosCorrectos++;
                 try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
                     String linea;
                     while ((linea = br.readLine()) != null) {
@@ -45,14 +49,19 @@ public int contarPalabra(String palabra) throws FileNotFoundException {
                             }
                         }
                     }
-                    System.out.println("La palabra " + palabra + " aparece " + contador + " veces en el archivo " + nombre);
+                    JOptionPane.showMessageDialog(null, "La palabra " + palabra + " aparece " + contador + " veces en el archivo " + nombre);
                 } catch (IOException e) {
-                    System.out.println("Error al leer el archivo " + nombre + ": " + e.getMessage());
-                }
+                    JOptionPane.showMessageDialog(null, "Error: " + e +"con el archivo" + archivo.getName());                }
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "El archivo " + nombre + " no es un archivo de texto por lo cual no se puede leer");
             }
         }
         Total = Total + contador;
         contador = 0;
+    }
+    if (archivosCorrectos == 0) {
+        JOptionPane.showMessageDialog(null, "No hay archivos de texto en la carpeta");
     }
     return Total;
 }}
