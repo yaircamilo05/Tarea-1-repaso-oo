@@ -11,11 +11,21 @@ public class back {
     private File carpeta;
     private File[] archivos;
 
+
+    /**
+     * este es el constructor de la clase no hago la conversion a tipo File porque no se si la ruta es correcta
+     * y puede salir un error
+     * @param ruta
+     */
     public back(String ruta) {
         this.carpeta = new File(ruta);
     }
 
 
+    /**
+     * convertimos la ruta en carpeta esta puede sacar un error si no existe
+     */
+     
     public void setArchivos() throws FileNotFoundException {
         if (this.carpeta.exists() && this.carpeta.isDirectory()) {
             this.archivos = this.carpeta.listFiles();
@@ -26,6 +36,12 @@ public class back {
 }
 
 
+/**
+ * 
+ * @param palabra
+ * @return el total de veces que aparece la palabra en todos los archivos de la carpeta
+ * @throws FileNotFoundException si no encuentra el archivo o no puede conectarse con el buffer
+ */
 public int contarPalabra(String palabra) throws FileNotFoundException {
     int Total = 0;
     int archivosCorrectos = 0;
