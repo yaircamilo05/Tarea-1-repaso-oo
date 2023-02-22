@@ -56,11 +56,7 @@ public int contarPalabra(String palabra) throws FileNotFoundException {
                     while ((linea = br.readLine()) != null) {
                         String[] palabras = linea.split("\\W|\\s+|(?<=\\()|(?=\\))");
                         for (String palabraArchivo : palabras) {
-                            System.out.println(
-                                    "Palabra: buscada " + palabra + " PalabraArchivo:" + palabraArchivo
-                            );
                             if (palabraArchivo.equals(palabra)) {
-                                System.out.println("Palabra encontrada");
                                 contador++;
                             }
                         }
