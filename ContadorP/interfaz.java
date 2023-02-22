@@ -1,6 +1,11 @@
 import javax.swing.JOptionPane;
 
 public class interfaz{
+    
+    /**
+     * este programa usa JOptionPane para pedir la ruta de la carpeta y la palabra a buscar por lo cual a veces puede que se pierda 
+     * el recuadreo de la ventana
+     */
     public static void main(String[] args) {
         int bandera = 0;
         while (bandera == 0) {
